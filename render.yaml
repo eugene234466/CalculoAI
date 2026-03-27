@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: calculo-ai
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
