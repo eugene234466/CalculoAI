@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="formulas">
+        <h2>Formula Reference</h2>
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="differentiation">Differentiation</button>
+            <button class="tab-btn" data-tab="integration">Integration</button>
+            <button class="tab-btn" data-tab="limits">Limits</button>
+            <button class="tab-btn" data-tab="series">Series</button>
+        </div>
+
+        <div id="differentiation" class="tab-content active">
+            <h3>Differentiation Formulas</h3>
+            <ul class="formula-list">
+                <li>\( \frac{d}{dx} x^n = nx^{n-1} \)</li>
+                <li>\( \frac{d}{dx} \sin x = \cos x \)</li>
+                <li>\( \frac{d}{dx} \cos x = -\sin x \)</li>
+                <li>\( \frac{d}{dx} e^x = e^x \)</li>
+                <li>\( \frac{d}{dx} \ln x = \frac{1}{x} \)</li>
+                <li>\( \frac{d}{dx} \tan x = \sec^2 x \)</li>
+                <li>\( \text{Chain Rule: } \frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x) \)</li>
+                <li>\( \text{Product Rule: } \frac{d}{dx}[uv] = u'v + uv' \)</li>
+                <li>\( \text{Quotient Rule: } \frac{d}{dx}\left[\frac{u}{v}\right] = \frac{u'v - uv'}{v^2} \)</li>
+            </ul>
+        </div>
+
+        <div id="integration" class="tab-content">
+            <h3>Integration Formulas</h3>
+            <ul class="formula-list">
+                <li>\( \int x^n \, dx = \frac{x^{n+1}}{n+1} + C \)</li>
+                <li>\( \int \sin x \, dx = -\cos x + C \)</li>
+                <li>\( \int \cos x \, dx = \sin x + C \)</li>
+                <li>\( \int e^x \, dx = e^x + C \)</li>
+                <li>\( \int \frac{1}{x} \, dx = \ln|x| + C \)</li>
+                <li>\( \int \sec^2 x \, dx = \tan x + C \)</li>
+                <li>\( \int a^x \, dx = \frac{a^x}{\ln a} + C \)</li>
+            </ul>
+        </div>
+
+        <div id="limits" class="tab-content">
+            <h3>Limits Formulas</h3>
+            <ul class="formula-list">
+                <li>\( \lim_{x \to 0} \frac{\sin x}{x} = 1 \)</li>
+                <li>\( \lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \)</li>
+                <li>\( \lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e \)</li>
+                <li>\( \lim_{x \to 0} \frac{e^x - 1}{x} = 1 \)</li>
+                <li>\( \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1 \)</li>
+                <li>\( \text{L'Hôpital's Rule: } \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)} \)</li>
+            </ul>
+        </div>
+
+        <div id="series" class="tab-content">
+            <h3>Series & Sequences</h3>
+            <ul class="formula-list">
+                <li>\( \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}, \quad |x| < 1 \)</li>
+                <li>\( e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} \)</li>
+                <li>\( \sin x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} \)</li>
+                <li>\( \cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} \)</li>
+                <li>\( \ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n}, \quad |x| \leq 1 \)</li>
+                <li>\( \text{Ratio Test: Series converges if } \lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| < 1 \)</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

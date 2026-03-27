@@ -1,0 +1,7 @@
+Flask
+groq
+PyPDF2
+python-docx
+Pillow
+python-dotenv
+gunicorn

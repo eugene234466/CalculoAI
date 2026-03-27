@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="quiz">
+        <h2>Quiz Mode</h2>
+        <form id="quizForm">
+            <div class="form-group">
+                <label for="topic">Select Topic:</label>
+                <select id="topic" name="user_input">
+                    <option value="Differentiation">Differentiation</option>
+                    <option value="Integration">Integration</option>
+                    <option value="Limits">Limits</option>
+                    <option value="Series and Sequences">Series &amp; Sequences</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="response_type" value="quiz">
+
+            <div class="form-group">
+                <button type="button" id="quizBtn">Generate Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-output" class="response-box"></div>
+    </section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="graphs">
+        <h2>Graph Plotter</h2>
+        <form id="graphForm">
+            <div class="form-group">
+                <label for="equation">Enter Equation:</label>
+                <textarea id="equation" name="equation" placeholder="e.g. x^2 + 2x + 1  or  sin(x)  or  e^x" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Graph Type:</label>
+                <div class="options">
+                    <input type="radio" id="plot2d" name="graph_type" value="2d" checked>
+                    <label for="plot2d">2D Plot</label>
+
+                    <input type="radio" id="derivative" name="graph_type" value="derivative">
+                    <label for="derivative">Derivative</label>
+
+                    <input type="radio" id="integral" name="graph_type" value="integral">
+                    <label for="integral">Integral</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="plotBtn">Plot Graph</button>
+            </div>
+        </form>
+
+        <!-- Plotly renders the graph here -->
+        <div id="plotly-graph" class="graph-output"></div>
+
+        <!-- Groq explanation renders here -->
+        <div id="graph-response" class="response-box"></div>
+    </section>
+
+{% block scripts %}
+    <!-- math.js for reliable expression evaluation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.3/math.min.js"></script>
+    <!-- Plotly CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.27.0/plotly.min.js"></script>
+    <!-- Main script AFTER Plotly and math.js -->
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}
+{% endblock %}

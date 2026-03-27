@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="solver">
+        <h2>Calculus Solver</h2>
+        <form id="solverForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="user_input">Question:</label>
+                <textarea id="user_input" name="user_input" placeholder="Type your calculus question here..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Response Type:</label>
+                <div class="options">
+                    <input type="radio" id="stepbystep" name="response_type" value="stepbystep" checked>
+                    <label for="stepbystep">Step-by-Step</label>
+
+                    <input type="radio" id="summarize" name="response_type" value="summarize">
+                    <label for="summarize">Summary</label>
+
+                    <input type="radio" id="graph" name="response_type" value="graph">
+                    <label for="graph">Graph it</label>
+
+                    <input type="radio" id="quiz" name="response_type" value="quiz">
+                    <label for="quiz">Quiz me</label>
+
+                    <input type="radio" id="explain" name="response_type" value="explain">
+                    <label for="explain">Explain Concept</label>
+
+                    <input type="radio" id="answer" name="response_type" value="answer">
+                    <label for="answer">Just the Answer</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cameraCapture">Take a Photo:</label>
+                <input type="file" id="cameracapture" name="uploaded_file" accept="image/*" capture="environment">
+            </div>
+
+            <div class="form-group">
+                <label for="fileUpload">Upload File (Optional):</label>
+                <input type="file" id="fileupload" name="uploaded_file" accept=".pdf,.docx,.txt,image/png,image/jpeg,image/jpg">
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="solveBtn">Solve</button>
+            </div>
+        </form>
+
+        <div id="response" class="response-box"></div>
+    </section>
+{% endblock %}
