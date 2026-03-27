@@ -194,7 +194,7 @@ def ask():
             "stepbystep": "You are a calculus expert. Solve this step by step, showing all working clearly. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
             "graph": "You are a calculus expert. Extract any equations and describe in detail how to plot them. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
             "summarize": "You are a calculus expert. Summarize the following calculus content clearly and concisely. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
-            "quiz": "You are a calculus expert. Generate 10 practice questions based on the following content. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
+            "quiz": "You are a calculus expert. Generate 30 practice questions based on the following content. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
             "explain": "You are a calculus expert. Explain the concept and theory behind the following thoroughly. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:",
             "answer": "You are a calculus expert. Give only the final answer, no working needed. Use LaTeX notation wrapped in \\( \\) for inline math and \\[ \\] for display math:"
         }
