@@ -511,6 +511,25 @@ mjx-container {
     border-radius: 12px;
     min-height: 100px;
     padding: 1rem;
+    /* Mobile overflow fixes */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Plotly graph container mobile fix */
+#plotly-graph {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
+}
+
+/* Plotly SVG responsive fix */
+#plotly-graph .svg-container,
+#plotly-graph svg {
+    max-width: 100% !important;
+    height: auto !important;
 }
 
 /* ─────────────────────────────────────────
@@ -691,6 +710,23 @@ mjx-container {
     button[type="submit"] {
         width: 100%;
         padding: 0.85rem 1rem;
+    }
+
+    /* Graph mobile fixes */
+    .graph-output {
+        padding: 0.5rem;
+        min-height: 280px;
+    }
+
+    #plotly-graph {
+        min-height: 280px;
+    }
+
+    /* Hide some Plotly toolbar buttons on mobile */
+    .modebar-btn[data-title="Zoom in"],
+    .modebar-btn[data-title="Zoom out"],
+    .modebar-btn[data-title="Pan"] {
+        display: none;
     }
 }
 
