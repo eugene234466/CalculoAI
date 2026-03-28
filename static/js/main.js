@@ -103,25 +103,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         connectgaps: false
                     };
 
+                    const isMobile = window.innerWidth <= 768;
+
                     const layout = {
-                        height: 450,
-                        title: { text: title, font: { color: '#e8eaf6', size: 16 } },
+                        height: isMobile ? 300 : 450,
+                        title: { text: title, font: { color: '#e8eaf6', size: isMobile ? 12 : 16 } },
                         paper_bgcolor: '#131629',
                         plot_bgcolor: '#0d0f1a',
-                        font: { color: '#8892b0' },
+                        font: { color: '#8892b0', size: isMobile ? 10 : 12 },
                         xaxis: {
                             title: 'x',
                             gridcolor: 'rgba(56, 217, 245, 0.1)',
                             zerolinecolor: 'rgba(56, 217, 245, 0.3)',
-                            tickfont: { color: '#8892b0' }
+                            tickfont: { color: '#8892b0', size: isMobile ? 9 : 11 }
                         },
                         yaxis: {
                             title: 'y',
                             gridcolor: 'rgba(56, 217, 245, 0.1)',
                             zerolinecolor: 'rgba(56, 217, 245, 0.3)',
-                            tickfont: { color: '#8892b0' }
+                            tickfont: { color: '#8892b0', size: isMobile ? 9 : 11 }
                         },
-                        margin: { t: 50, l: 60, r: 30, b: 60 }
+                        margin: isMobile
+                            ? { t: 40, l: 45, r: 10, b: 45 }
+                            : { t: 50, l: 60, r: 30, b: 60 }
                     };
 
                     const config = {
