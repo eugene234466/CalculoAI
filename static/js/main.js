@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         connectgaps: false
                     };
 
-                    const isMobile = window.innerWidth <= 768;
+                    const isMobile = window.innerWidth <= 480;
 
                     const layout = {
                         height: isMobile ? 300 : 450,
