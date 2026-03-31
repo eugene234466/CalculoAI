@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/\$\$([\s\S]*?)\$\$/g, '\\[$1\\]')
             // Convert single $ inline math
             .replace(/\$((?:[^$\\]|\\.)+?)\$/g, '\\($1\\)')
-            // Markdown headings
-            .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>')
-            .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
-            .replace(/# (.*?)(\n|$)/g, '<h1>$1</h1>')
+            // Markdown headings — anchored to start of line to avoid LaTeX collisions
+            .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
+            .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
+            .replace(/^# (.*?)$/gm, '<h1>$1</h1>')
             // Bold and italic
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -29,8 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function evaluateExpression(expression, x) {
         try {
             let expr = expression
-                .replace(/[Mm]ath\./g, '')
-                .replace(/\*\*/g, '^');
+                .replace(/[Mm]ath\./g, '')   // math.exp → exp
+                .replace(/\*\*/g, '^')        // Python ** → math.js ^
+                .replace(/(\d)(x)/g, '$1*x'); // 2x → 2*x
 
             if (window.math) {
                 const result = math.evaluate(expr, { x: x });
@@ -59,6 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
         return { xValues, yValues };
     }
 
+    // Helper — fetch with 30 second timeout
+    async function fetchWithTimeout(url, options, timeoutMs = 30000) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+            const res = await fetch(url, { ...options, signal: controller.signal });
+            clearTimeout(timeout);
+            return res;
+        } catch (err) {
+            clearTimeout(timeout);
+            if (err.name === 'AbortError') {
+                throw new Error('Request timed out. Please try again.');
+            }
+            throw err;
+        }
+    }
+
     // ── GRAPHS / PLOTLY ──
     const plotBtn = document.getElementById('plotBtn');
     if (plotBtn) {
@@ -83,15 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append('equation', equation);
                 formData.append('graph_type', graphType);
 
-                const res = await fetch('/plot', {
-                    method: 'POST',
-                    body: formData
-                });
+                const res = await fetchWithTimeout('/plot', { method: 'POST', body: formData });
                 const data = await res.json();
 
                 if (data.status === 'success') {
                     const { expression, x_min, x_max, title, explanation } = data.plot;
                     const { xValues, yValues } = generatePlotData(expression, x_min, x_max);
+
+                    // Guard: check Plotly loaded
+                    if (typeof Plotly === 'undefined') {
+                        graphResponse.innerHTML = '<p class="error">Graph library not loaded. Please refresh the page.</p>';
+                        return;
+                    }
 
                     const trace = {
                         x: xValues,
@@ -182,10 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
             solveBtn.disabled = true;
 
             try {
-                const res = await fetch('/ask', {
-                    method: 'POST',
-                    body: formData
-                });
+                const res = await fetchWithTimeout('/ask', { method: 'POST', body: formData });
                 const data = await res.json();
 
                 if (data.status === 'success') {
@@ -220,10 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quizBtn.disabled = true;
 
             try {
-                const res = await fetch('/ask', {
-                    method: 'POST',
-                    body: formData
-                });
+                const res = await fetchWithTimeout('/ask', { method: 'POST', body: formData });
                 const data = await res.json();
 
                 if (data.status === 'success') {
