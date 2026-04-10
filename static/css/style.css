@@ -507,6 +507,7 @@ button[type="submit"]:disabled {
 .MJX-TEX,
 mjx-container {
     overflow-x: auto !important;
+    overflow-y: auto !important;
     max-width: 100% !important;
 }
 
