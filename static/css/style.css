@@ -506,25 +506,9 @@ button[type="submit"]:disabled {
 /* MathJax overflow fix */
 .MJX-TEX,
 mjx-container {
-    display: block;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
     max-width: 100% !important;
-    overflow: hidden !important;   /* removed scrollbars */
-}
-
-/* Make math scale instead of overflow */
-mjx-container[jax="SVG"] {
-    max-width: 100%;
-}
-
-mjx-container[jax="SVG"] svg {
-    width: 100% !important;
-    height: auto !important;
-}
-
-/* Extra safety for inline math */
-mjx-container[display="false"] {
-    display: inline-block;
-    max-width: 100%;
 }
 
 .response-box .loading {
@@ -800,4 +784,4 @@ mjx-container[display="false"] {
     mjx-container {
         font-size: 80% !important;
     }
-} Remove scroll bars from mathjx
+}
