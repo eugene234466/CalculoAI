@@ -105,42 +105,169 @@ body {
     margin-left: 10px;
 }
 
-/* ... (UNCHANGED CONTENT — NAV, HERO, FEATURES, FORMS, ETC.) ... */
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
 
-/* ─────────────────────────────────────────
-   RESPONSE BOX
-   ───────────────────────────────────────── */
-.response-box {
-    margin-top: 2rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    min-height: 60px;
-    color: var(--text);
-    font-family: var(--font-body);
-    line-height: 1.8;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    box-sizing: border-box;
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: var(--cyan);
+    background: rgba(56, 217, 245, 0.08);
+    text-shadow: 0 0 8px rgba(56, 217, 245, 0.5);
 }
 
 /* ─────────────────────────────────────────
-   ✅ FIXED: MATHJAX (NO SCROLLBARS + RESPONSIVE)
+   HERO SECTION
+   ───────────────────────────────────────── */
+.hero {
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(74, 144, 217, 0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(123, 94, 167, 0.08) 0%, transparent 70%);
+    top: 40%;
+    right: 20%;
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: 3.8rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 50%, var(--purple-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(0 0 20px rgba(56, 217, 245, 0.3));
+}
+
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    max-width: 600px;
+}
+
+.hero p:first-of-type {
+    color: var(--text);
+    font-size: 1.25rem;
+}
+
+/* CTA BUTTONS */
+.cta {
+    display: inline-block;
+    margin: 0.75rem 0.5rem 0;
+    padding: 0.8rem 2rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.cta-primary {
+    background: var(--gradient-btn);
+    color: #0d0f1a !important;
+    border: none;
+    box-shadow: 0 4px 20px rgba(56, 217, 245, 0.3);
+}
+
+.cta-primary:hover {
+    box-shadow: 0 6px 30px rgba(56, 217, 245, 0.6);
+    transform: translateY(-2px);
+}
+
+.cta-secondary {
+    background: transparent;
+    color: var(--cyan) !important;
+    border: 1.5px solid var(--cyan);
+}
+
+.cta-secondary:hover {
+    background: rgba(56, 217, 245, 0.08);
+    box-shadow: var(--glow-cyan);
+    transform: translateY(-2px);
+}
+
+/* FEATURES */
+.features {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feature-card {
+    display: inline-block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin: 0.75rem;
+    width: calc(25% - 1.5rem);
+}
+
+/* ─────────────────────────────────────────
+   ✅ FIXED MATHJAX (NO SCROLLBARS)
    ───────────────────────────────────────── */
 .MJX-TEX,
 mjx-container {
     display: block;
     max-width: 100% !important;
-    overflow: hidden !important;   /* removed scrollbars */
-}
-
-/* Make math scale instead of overflow */
-mjx-container[jax="SVG"] {
-    max-width: 100%;
+    overflow: hidden !important;
 }
 
 mjx-container[jax="SVG"] svg {
@@ -148,12 +275,7 @@ mjx-container[jax="SVG"] svg {
     height: auto !important;
 }
 
-/* Extra safety for inline math */
 mjx-container[display="false"] {
     display: inline-block;
     max-width: 100%;
 }
-
-/* ─────────────────────────────────────────
-   (REST OF YOUR FILE CONTINUES UNCHANGED)
-   ───────────────────────────────────────── */
