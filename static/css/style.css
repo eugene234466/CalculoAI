@@ -503,11 +503,29 @@ button[type="submit"]:disabled {
     color: var(--cyan);
 }
 
-/* MathJax overflow fix */
+/* ─────────────────────────────────────────
+   MATHJAX OVERFLOW FIX — REMOVE SCROLL BARS
+   ───────────────────────────────────────── */
 .MJX-TEX,
 mjx-container {
-    overflow-x: auto !important;
-    overflow-y: auto !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    max-width: 100% !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+mjx-container::-webkit-scrollbar,
+.MJX-TEX::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+mjx-container mjx-math {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
     max-width: 100% !important;
 }
 
@@ -729,6 +747,7 @@ mjx-container {
 
     mjx-container {
         font-size: 90% !important;
+        overflow-x: visible !important;
     }
 
     .formula-list li {
@@ -783,5 +802,6 @@ mjx-container {
 
     mjx-container {
         font-size: 80% !important;
+        overflow-x: visible !important;
     }
 }
