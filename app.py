@@ -126,7 +126,7 @@ Rules for your response:
         ]
 
         response = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=messages,
             temperature=0.0,
             max_tokens=300
@@ -222,7 +222,7 @@ def ask():
                 }
             ]
             response = groq_client.chat.completions.create(
-                model="meta-llama/llama-4-scout-17b-16e-instruct",
+                model="openai/gpt-oss-20b",
                 messages=messages,
                 temperature=0.3,
                 max_tokens=2048
@@ -249,7 +249,7 @@ def ask():
             ]
 
             response = groq_client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-20b",
                 messages=messages,
                 temperature=0.3,
                 max_tokens=2048
